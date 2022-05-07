@@ -1,0 +1,11 @@
+@import './assets/style/var';
+
+.App {
+  text-align: center;
+}
+
+.error-message {
+    color: $danger;
+    margin-top: 0.25rem;
+    font-size: $sm;
+}

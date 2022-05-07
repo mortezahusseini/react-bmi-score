@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import './App.scss';
+import BMIForm from './organisms/bmiForm';
+import Form from './templates/form';
+import { formProps } from './templates/form/Form';
+import { BMIFormValuesType } from './types/bmiTypes';
+import { BMIFormInitialValues, BMIFormValidationSchema } from './utils/bmiUtils';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    
+    const [showBMIScoreComponent, setShowBMIScoreComponent] = useState(false);
+
+    const submitHandler: formProps<BMIFormValuesType>['onSubmit'] = (value) => setShowBMIScoreComponent(true)
+
+    return (
+        <div className="App">
+            <Form onSubmit={submitHandler} useFormProps={{
+                resolver: yupResolver(BMIFormValidationSchema),
+                mode: 'onTouched',
+                defaultValues: BMIFormInitialValues,
+            }}>
+                <BMIForm formIsValid={showBMIScoreComponent} />
+            </Form>
+        </div>
+    );
 }
 
 export default App;
