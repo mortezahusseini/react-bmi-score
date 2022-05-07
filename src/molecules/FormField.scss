@@ -1,0 +1,14 @@
+.form-field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    width: 300px;
+    input {
+        margin-left: auto
+    }
+}
+
+.form-field_error {
+    margin-left: 130px;
+    text-align: left;
+}

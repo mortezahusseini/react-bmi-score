@@ -4,6 +4,7 @@ import BMIScoreVisualization from "../molecules/BMIScoreVisualization";
 import FormField from "../molecules/FormField";
 import { BMIFormValuesType } from "../types/bmiTypes";
 import { petsGender } from "../utils/bmiUtils";
+import './BMIForm.scss';
 
 type bmiFormProps = {
     formIsValid: boolean;
@@ -25,7 +26,7 @@ const BMIForm: FC<bmiFormProps> = ({ formIsValid }) => {
     ), [petWeight, petHeight])
 
     const bmiScoreIsValid = useMemo(() => (
-        ~~bmiScore > 0 && ~~bmiScore <= 120
+        Number(bmiScore) > 0 && Number(bmiScore) <= 120
     ), [bmiScore])
 
     const selectGenderHandler: ChangeEventHandler<HTMLSelectElement> = (event) => {
@@ -33,16 +34,20 @@ const BMIForm: FC<bmiFormProps> = ({ formIsValid }) => {
     }
 
     return (
-        <>
-            <h4> please enter the information of your pet </h4>
-            <select
-                name="gender"
-                onChange={selectGenderHandler}
-                id="pet-form-gender">
-                {petsGender.map(gender => (
-                    <option key={gender.id}> {gender.title} </option>
-                ))}
-            </select>
+        <div className="bmi-form">
+            <h4 className="bmi-form_title"> please enter the information of your pet </h4>
+            <div className="bmi-form_gender">
+                <span> gender: </span>
+                <select
+                    name="gender"
+                    onChange={selectGenderHandler}
+                    className="bmi-form_gender__select"
+                    id="pet-form-gender">
+                    {petsGender.map(gender => (
+                        <option key={gender.id}> {gender.title} </option>
+                    ))}
+                </select>
+            </div>
             <FormField
                 id='pet-form-name'
                 label='name'
@@ -61,14 +66,14 @@ const BMIForm: FC<bmiFormProps> = ({ formIsValid }) => {
                 name='height'
                 valueType='number'
             />
-            <button type='submit'> submit </button>
+            <button className="bmi-form_button" type='submit'> submit </button>
             {formIsValid && <>
-                <p> { `${petGender} ${petName}'s BMI is:` } </p>
-                <p> { bmiScore } </p>
-                {!bmiScoreIsValid && <p className="error-message"> BMI score isn't valid, please check the your entries </p>}
-                {bmiScoreIsValid && <BMIScoreVisualization score={~~bmiScore} />}
+                <p> {`${petGender} ${petName}'s BMI is:`} </p>
+                <p className="bmi-form_bmi-score"> {bmiScore} </p>
+                {!bmiScoreIsValid && <p className="error-message"> BMI score isn't valid, please check your entries </p>}
+                {bmiScoreIsValid && <BMIScoreVisualization score={Number(bmiScore)} />}
             </>}
-        </>
+        </div>
     )
 }
 

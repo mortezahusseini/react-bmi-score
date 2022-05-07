@@ -7,7 +7,7 @@
     margin: 0 auto;
     text-align: center;
     position: relative;
-    &__widget {
+    &_widget {
         width: 120px;
         &-badge {
             width: 100%;
@@ -30,7 +30,7 @@
             background-color: $success;
         }
     }
-    &__score-arrow {
+    &_score-arrow {
         width: 0;
         height: 0;
         transition: all ease-in 0.5s;

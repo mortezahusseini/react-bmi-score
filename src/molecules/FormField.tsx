@@ -1,6 +1,7 @@
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { FC, HTMLInputTypeAttribute } from "react";
 import { flatten } from 'flat';
+import './FormField.scss';
 
 type formFieldProps = {
     label: string
@@ -25,9 +26,11 @@ const FormField: FC<formFieldProps> = ({ label, id, name, valueType }) => {
         <Controller
             render={({ field }) => (
                 <>
-                    <label htmlFor={id}> {label} </label>
-                    <input type={valueType} onChange={field.onChange} name={name} id={id} value={value} />
-                    <p className="error-message">{error}</p>
+                    <div className="form-field">
+                        <label htmlFor={id}> {label} : </label>
+                        <input type={valueType} onChange={field.onChange} name={name} id={id} value={value} />
+                    </div>
+                    {error && <p className="error-message form-field_error">{error}</p>}
                 </>
             )}
             control={control}

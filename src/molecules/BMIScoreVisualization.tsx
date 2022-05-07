@@ -20,12 +20,12 @@ const BMIScoreVisualization: FC<BMIScoreVisualization> = ({ score }) => {
 
     return (
         <div className="score-container">
-            <div className="score-container__score-arrow" style={{ left: arrowLeftDistance || 0 }} />
+            <div className="score-container_score-arrow" style={{ left: arrowLeftDistance || 0 }} />
             {BMIScoreOptionsValue.map(item => (
                 // we know that title is unique. so we use it as key
-                <div key={item.title} className="score-container__widget" >
-                    <div className={`score-container__widget-${item.title} score-container__widget-badge`} />
-                    <p className="score-container__widget-title"> { item.title } </p>
+                <div key={item.title} className="score-container_widget" >
+                    <div className={`score-container_widget-${item.title} score-container_widget-badge`} />
+                    <p className="score-container_widget-title"> { item.title } </p>
                 </div>
             ))}
         </div>

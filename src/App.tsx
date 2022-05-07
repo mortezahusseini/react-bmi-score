@@ -1,9 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import './App.scss';
-import BMIForm from './organisms/bmiForm';
-import Form from './templates/form';
-import { formProps } from './templates/form/Form';
+import BMIForm from './organisms/BMIForm';
+import Form, { formProps } from './templates/form';
 import { BMIFormValuesType } from './types/bmiTypes';
 import { BMIFormInitialValues, BMIFormValidationSchema } from './utils/bmiUtils';
 
